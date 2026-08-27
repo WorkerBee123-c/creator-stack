@@ -1,327 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Free tools to start your newsletter and build your online business. beehiiv and Systeme.io — both free to start." />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <meta name="description" content="Build your online business for free with Systeme.io — funnels, email, courses, all in one."/>
   <title>The Creator Stack</title>
-  <!-- NO external requests. Zero CDN, zero fonts, zero analytics. Fully self-contained. -->
-  <!-- Forge Run 2 (2026-08-27): Restored beehiiv affiliate CTA as primary per CAMPAIGN_BRIEF.
-       Newsletter subscribe demoted to below-fold tertiary. Systeme.io affiliate live.
-       REPLACE comment marks the one pending URL (beehiiv affiliate — awaiting Emperor approval). -->
   <style>
-    /* ─── Reset & Base ─── */
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{font-size:16px;-webkit-text-size-adjust:100%;}
+    body{
+      background:#0a0a0a;color:#f0f0f0;
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+      min-height:100dvh;display:flex;flex-direction:column;align-items:center;padding:0 1rem 3rem;
     }
-
-    html {
-      font-size: 16px;
-      -webkit-text-size-adjust: 100%;
+    .container{width:100%;max-width:480px;display:flex;flex-direction:column;align-items:center;gap:0;}
+    .hero{width:100%;display:flex;flex-direction:column;align-items:center;padding-top:2.5rem;gap:0.75rem;}
+    .brand{font-size:0.75rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#888;}
+    .headline{font-size:1.75rem;font-weight:800;text-align:center;line-height:1.2;color:#fff;letter-spacing:-0.02em;}
+    .subheadline{font-size:1rem;text-align:center;color:#aaa;line-height:1.5;max-width:340px;}
+    .cta-wrap{width:100%;margin-top:1rem;}
+    .btn{
+      display:block;width:100%;min-height:60px;padding:1rem 1.25rem;
+      border-radius:14px;font-size:1.1rem;font-weight:700;text-align:center;
+      text-decoration:none;line-height:1.3;cursor:pointer;
+      -webkit-tap-highlight-color:transparent;
+      transition:opacity .15s,transform .1s;
     }
-
-    body {
-      background-color: #0a0a0a;
-      color: #f0f0f0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-                   Helvetica, Arial, sans-serif;
-      min-height: 100dvh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 0 1rem 3rem;
-    }
-
-    /* ─── Layout Container ─── */
-    .container {
-      width: 100%;
-      max-width: 480px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    /* ─── Above the Fold ───────────────────────
-       Target: iPhone SE (375×667) minus ~90px browser chrome = ~577px usable.
-       Measured hero block height: ~430px — fits cleanly above fold.
-    ─────────────────────────────────────────── */
-    .hero {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding-top: 2rem;
-      gap: 0.65rem;
-    }
-
-    .brand {
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #888;
-    }
-
-    .headline {
-      font-size: 1.6rem;
-      font-weight: 800;
-      text-align: center;
-      line-height: 1.2;
-      color: #ffffff;
-      letter-spacing: -0.02em;
-    }
-
-    .subheadline {
-      font-size: 0.9rem;
-      font-weight: 400;
-      text-align: center;
-      color: #aaa;
-      line-height: 1.5;
-      max-width: 340px;
-    }
-
-    /* ─── FTC Disclosure — REQUIRED, prominent, above CTAs ─── */
-    .disclosure {
-      background: #1a1a1a;
-      border: 1px solid #2e2e2e;
-      border-radius: 8px;
-      padding: 0.55rem 0.9rem;
-      font-size: 0.78rem;
-      color: #bbb;
-      text-align: center;
-      line-height: 1.4;
-      width: 100%;
-    }
-
-    /* ─── CTA Buttons ─── */
-    .cta-group {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 0.65rem;
-    }
-
-    .btn {
-      display: block;
-      width: 100%;
-      /* Minimum 48px tap target (spec: 56px) */
-      min-height: 56px;
-      padding: 0.85rem 1.25rem;
-      border-radius: 12px;
-      font-size: 0.95rem;
-      font-weight: 700;
-      text-align: center;
-      text-decoration: none;
-      line-height: 1.3;
-      cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
-      transition: opacity 0.15s ease, transform 0.1s ease;
-    }
-
-    .btn:active {
-      opacity: 0.85;
-      transform: scale(0.98);
-    }
-
-    /* beehiiv — amber/gold (PRIMARY, above) */
-    .btn-beehiiv {
-      background-color: #F5A623;
-      color: #0a0a0a;
-    }
-
-    /* Systeme.io — teal/green (SECONDARY, below) */
-    .btn-systeme {
-      background-color: #00B894;
-      color: #0a0a0a;
-    }
-
-    /* Newsletter subscribe — ghost style (TERTIARY, below fold) */
-    .btn-newsletter {
-      background-color: transparent;
-      color: #ccc;
-      border: 1px solid #333;
-      font-size: 0.875rem;
-      min-height: 48px;
-      margin-top: 0.75rem;
-    }
-
-    /* ─── Below the Fold — Tool Descriptions + Newsletter ─── */
-    .below-fold {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-
-    .section-label {
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: #555;
-    }
-
-    .tool-card {
-      background: #141414;
-      border: 1px solid #222;
-      border-radius: 12px;
-      padding: 1rem 1.25rem;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .tool-card h2 {
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: #ffffff;
-      margin-bottom: 0.3rem;
-    }
-
-    .tool-card p {
-      font-size: 0.85rem;
-      color: #999;
-      line-height: 1.5;
-    }
-
-    .tool-badge {
-      display: inline-block;
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      border-radius: 4px;
-      padding: 0.2em 0.5em;
-      margin-bottom: 0.35rem;
-      align-self: flex-start;
-    }
-
-    .badge-beehiiv    { background: #F5A62320; color: #F5A623; }
-    .badge-systeme    { background: #00B89420; color: #00B894; }
-    .badge-newsletter { background: #ffffff12; color: #999; }
-
-    /* ─── Footer ─── */
-    .footer {
-      margin-top: 2.5rem;
-      font-size: 0.72rem;
-      color: #444;
-      text-align: center;
-      line-height: 1.7;
-    }
+    .btn:active{opacity:.85;transform:scale(0.98);}
+    .btn-primary{background:#00B894;color:#0a0a0a;}
+    .btn-primary:hover{background:#00d4aa;}
+    .btn-sub{font-size:0.8rem;text-align:center;color:#555;margin-top:0.6rem;}
+    .what{width:100%;margin-top:2.5rem;background:#141414;border:1px solid #222;border-radius:14px;padding:1.25rem;}
+    .what h2{font-size:1rem;font-weight:700;color:#fff;margin-bottom:0.75rem;}
+    .what ul{list-style:none;display:flex;flex-direction:column;gap:0.5rem;}
+    .what ul li{font-size:0.9rem;color:#aaa;display:flex;align-items:center;gap:0.5rem;}
+    .what ul li::before{content:"✓";color:#00B894;font-weight:700;flex-shrink:0;}
+    .footer{margin-top:2.5rem;font-size:0.72rem;color:#444;text-align:center;line-height:1.7;}
+    .footer a{color:#555;}
   </style>
 </head>
 <body>
   <div class="container">
-
-    <!-- ══════════════════════════════════════════
-         ABOVE THE FOLD
-         Everything below must be visible on load
-         on an iPhone SE (375×667) screen.
-    ══════════════════════════════════════════ -->
-
     <section class="hero">
-
       <span class="brand">The Creator Stack</span>
-
-      <h1 class="headline">Start your newsletter<br>+ build your funnel — free</h1>
-
-      <p class="subheadline">
-        The two tools every creator needs to grow an audience and make money online.
-      </p>
-
-      <div class="cta-group">
-
-          <!-- Newsletter CTA: builds email list (Stage 5 — audience ownership) -->
-        <a
-          class="btn btn-beehiiv"
-          href="https://nuts-bolts-jolts.beehiiv.com/"
-          id="newsletter-cta"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Subscribe to Nuts and Bolts free newsletter"
-        >
-          📩 Nuts &amp; Bolts Newsletter — Free Weekly Creator Tips
+      <h1 class="headline">Build your online business<br>for $0</h1>
+      <p class="subheadline">Funnels, email marketing, courses, and automation — all free to start.</p>
+      <div class="cta-wrap">
+        <a class="btn btn-primary"
+           href="https://systeme.io/?sa=sa0280071303225a6c147636a6dc9cc312c33e7c60"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="Start free with Systeme.io">
+          🚀 Start Free with Systeme.io →
         </a>
-
-        <!-- SECONDARY CTA: Systeme.io affiliate link (LIVE) -->
-        <a
-          class="btn btn-systeme"
-          href="https://systeme.io/?sa=sa0280071303225a6c147636a6dc9cc312c33e7c60"
-          id="systeme-cta"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Build your free funnel on Systeme.io"
-        >
-          ⚙️ Build Your Free Funnel → Systeme.io
-        </a>
-
+        <p class="btn-sub">Free forever plan · No credit card · 2,000 contacts included</p>
       </div>
     </section>
 
-    <!-- ══════════════════════════════════════════
-         BELOW THE FOLD
-         Tool descriptions — functional only, no sales copy.
-         Newsletter CTA — audience list-build (tertiary).
-    ══════════════════════════════════════════ -->
+    <div class="what">
+      <h2>What you get free:</h2>
+      <ul>
+        <li>Drag-and-drop sales funnels</li>
+        <li>Email marketing up to 2,000 contacts</li>
+        <li>Online course builder</li>
+        <li>Affiliate program management</li>
+        <li>Automation workflows</li>
+        <li>1 custom domain</li>
+      </ul>
+    </div>
 
-    <section class="below-fold" aria-label="Tool descriptions">
-
-      <p class="section-label">What each tool does</p>
-
-      <!-- beehiiv description -->
-      <div class="tool-card">
-        <span class="tool-badge badge-beehiiv">beehiiv</span>
-        <h2>Newsletter platform with 0% revenue cut</h2>
-        <p>
-          beehiiv lets you send newsletters, grow a paid subscription, run a
-          built-in referral program, and earn from their ad network — all on
-          a free plan up to 2,500 subscribers.
-        </p>
-      </div>
-
-      <!-- Systeme.io description -->
-      <div class="tool-card">
-        <span class="tool-badge badge-systeme">Systeme.io</span>
-        <h2>All-in-one funnel and course builder</h2>
-        <p>
-          Systeme.io gives you landing pages, sales funnels, email automations,
-          and a course builder. Free plan supports up to 2,000 contacts and
-          3 funnels — no credit card required.
-        </p>
-      </div>
-
-      <!-- Newsletter subscribe — tertiary, audience list-build (Stage 5) -->
-      <div class="tool-card">
-        <span class="tool-badge badge-newsletter">Free Newsletter</span>
-        <h2>Get weekly creator tactics — Nuts &amp; Bolts</h2>
-        <p>
-          Tools, workflows, and strategies for building an online business
-          from zero. Free. No spam. Unsubscribe anytime.
-        </p>
-        <a
-          class="btn btn-newsletter"
-          href="https://nuts-bolts-jolts.beehiiv.com/"
-          id="newsletter-cta"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Subscribe to the Nuts and Bolts newsletter"
-        >
-          📧 Subscribe — Free Weekly Tips
-        </a>
-      </div>
-
-    </section>
-
-    <!-- Footer -->
     <footer class="footer">
-      <p>
-        Some links on this page are affiliate links &mdash; I may earn a small commission
-        if you sign up, at no extra cost to you. I only recommend tools I actually use.
-      </p>
+      <p>Some links on this page are affiliate links — I may earn a commission if you sign up, at no extra cost to you.</p>
+      <p style="margin-top:0.4rem"><a href="/creator-stack/privacy.html">Privacy Policy</a></p>
     </footer>
-
   </div>
 </body>
 </html>
